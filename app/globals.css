@@ -17,6 +17,8 @@ body {
     )
     rgb(var(--background-start-rgb));
   min-height: 100vh;
+  /* Prevent horizontal scroll on mobile */
+  overflow-x: hidden;
 }
 
 @layer utilities {
@@ -41,4 +43,28 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #df4a11;
+}
+
+/* Mobile touch optimization */
+@media (max-width: 640px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  input,
+  textarea,
+  select {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better text rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

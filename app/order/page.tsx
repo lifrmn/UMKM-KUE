@@ -197,32 +197,32 @@ function OrderContent() {
   const minDate = tomorrow.toISOString().split('T')[0];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-bakery-cream via-white to-bakery-peach py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-bakery-cream via-white to-bakery-peach py-4 sm:py-8 px-3 sm:px-4">
       <div className="container mx-auto max-w-7xl">
-        <div className="mb-8">
-          <Link href="/" className="text-primary-600 hover:text-primary-700 font-semibold">
+        <div className="mb-4 sm:mb-8">
+          <Link href="/" className="text-primary-600 hover:text-primary-700 font-semibold text-sm sm:text-base inline-flex items-center">
             ← Kembali ke Beranda
           </Link>
-          <h1 className="text-4xl font-display font-bold text-gray-800 mt-4">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-gray-800 mt-3 sm:mt-4">
             Pesan Kue 🎂
           </h1>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {/* Left Column - Available Cakes */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-xl shadow-lg p-6 sticky top-4">
-              <h2 className="text-2xl font-display font-bold text-gray-800 mb-4">
+            <div className="bg-white rounded-lg sm:rounded-xl shadow-lg p-4 sm:p-6 lg:sticky lg:top-4">
+              <h2 className="text-xl sm:text-2xl font-display font-bold text-gray-800 mb-3 sm:mb-4">
                 Pilih Kue
               </h2>
-              <div className="space-y-3 max-h-[600px] overflow-y-auto">
+              <div className="space-y-2 sm:space-y-3 max-h-[400px] sm:max-h-[500px] lg:max-h-[600px] overflow-y-auto pr-1">
                 {cakes.map((cake) => (
                   <div
                     key={cake.id}
-                    className="flex items-center gap-3 p-3 border rounded-lg hover:border-primary-500 transition cursor-pointer"
+                    className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 border-2 rounded-lg hover:border-primary-500 active:border-primary-600 transition cursor-pointer"
                     onClick={() => addToCart(cake)}
                   >
-                    <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                    <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-lg overflow-hidden flex-shrink-0">
                       <Image
                         src={cake.imageUrl}
                         alt={cake.name}
@@ -230,13 +230,13 @@ function OrderContent() {
                         className="object-cover"
                       />
                     </div>
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-gray-800">{cake.name}</h3>
-                      <p className="text-primary-600 font-bold">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-gray-800 text-sm sm:text-base truncate">{cake.name}</h3>
+                      <p className="text-primary-600 font-bold text-sm sm:text-base">
                         Rp {cake.price.toLocaleString("id-ID")}
                       </p>
                     </div>
-                    <button className="text-primary-500 hover:text-primary-600 text-2xl">
+                    <button className="text-primary-500 hover:text-primary-600 active:text-primary-700 text-2xl sm:text-3xl flex-shrink-0 w-8 sm:w-10">
                       +
                     </button>
                   </div>
@@ -247,21 +247,21 @@ function OrderContent() {
 
           {/* Right Column - Order Form */}
           <div className="lg:col-span-2">
-            <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-lg p-6 space-y-6">
+            <form onSubmit={handleSubmit} className="bg-white rounded-lg sm:rounded-xl shadow-lg p-4 sm:p-6 space-y-4 sm:space-y-6">
               {/* Cart */}
               <div>
-                <h2 className="text-2xl font-display font-bold text-gray-800 mb-4">
+                <h2 className="text-xl sm:text-2xl font-display font-bold text-gray-800 mb-3 sm:mb-4">
                   Keranjang Pesanan
                 </h2>
                 {cart.length === 0 ? (
-                  <div className="bg-bakery-cream rounded-lg p-8 text-center">
-                    <p className="text-gray-600">Belum ada kue dipilih</p>
+                  <div className="bg-bakery-cream rounded-lg p-6 sm:p-8 text-center">
+                    <p className="text-gray-600 text-sm sm:text-base">Belum ada kue dipilih</p>
                   </div>
                 ) : (
-                  <div className="space-y-3">
+                  <div className="space-y-2.5 sm:space-y-3">
                     {cart.map((item) => (
-                      <div key={item.cake.id} className="flex items-center gap-4 p-4 border rounded-lg">
-                        <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+                      <div key={item.cake.id} className="flex items-center gap-2.5 sm:gap-4 p-3 sm:p-4 border-2 rounded-lg">
+                        <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden flex-shrink-0">
                           <Image
                             src={item.cake.imageUrl}
                             alt={item.cake.name}
@@ -269,25 +269,25 @@ function OrderContent() {
                             className="object-cover"
                           />
                         </div>
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-gray-800">{item.cake.name}</h3>
-                          <p className="text-primary-600 font-bold">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-semibold text-gray-800 text-sm sm:text-base truncate">{item.cake.name}</h3>
+                          <p className="text-primary-600 font-bold text-sm sm:text-base">
                             Rp {item.cake.price.toLocaleString("id-ID")}
                           </p>
                         </div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
                           <button
                             type="button"
                             onClick={() => updateQuantity(item.cake.id, item.quantity - 1)}
-                            className="w-8 h-8 bg-gray-200 hover:bg-gray-300 rounded-full font-bold"
+                            className="w-8 h-8 sm:w-9 sm:h-9 bg-gray-200 hover:bg-gray-300 active:bg-gray-400 rounded-full font-bold text-lg"
                           >
                             -
                           </button>
-                          <span className="w-12 text-center font-bold">{item.quantity}</span>
+                          <span className="w-8 sm:w-10 text-center font-bold text-base sm:text-lg">{item.quantity}</span>
                           <button
                             type="button"
                             onClick={() => updateQuantity(item.cake.id, item.quantity + 1)}
-                            className="w-8 h-8 bg-primary-500 hover:bg-primary-600 text-white rounded-full font-bold"
+                            className="w-8 h-8 sm:w-9 sm:h-9 bg-primary-500 hover:bg-primary-600 active:bg-primary-700 text-white rounded-full font-bold text-lg"
                           >
                             +
                           </button>
@@ -295,13 +295,13 @@ function OrderContent() {
                         <button
                           type="button"
                           onClick={() => removeFromCart(item.cake.id)}
-                          className="text-red-500 hover:text-red-600 text-xl"
+                          className="text-red-500 hover:text-red-600 active:text-red-700 text-xl sm:text-2xl flex-shrink-0"
                         >
                           🗑️
                         </button>
                       </div>
                     ))}
-                    <div className="flex justify-between items-center pt-4 border-t-2 text-xl font-bold">
+                    <div className="flex justify-between items-center pt-3 sm:pt-4 border-t-2 text-lg sm:text-xl font-bold">
                       <span>Total:</span>
                       <span className="text-primary-600">
                         Rp {calculateTotal().toLocaleString("id-ID")}
@@ -312,13 +312,13 @@ function OrderContent() {
               </div>
 
               {/* Customer Info */}
-              <div className="border-t pt-6">
-                <h2 className="text-2xl font-display font-bold text-gray-800 mb-4">
+              <div className="border-t pt-4 sm:pt-6">
+                <h2 className="text-xl sm:text-2xl font-display font-bold text-gray-800 mb-3 sm:mb-4">
                   Data Pembeli
                 </h2>
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
                       Nama Lengkap *
                     </label>
                     <input
@@ -326,13 +326,13 @@ function OrderContent() {
                       required
                       value={formData.customerName}
                       onChange={(e) => setFormData({ ...formData, customerName: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                       placeholder="Masukkan nama lengkap"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
                       Nomor WhatsApp *
                     </label>
                     <input
@@ -340,14 +340,14 @@ function OrderContent() {
                       required
                       value={formData.whatsappNumber}
                       onChange={(e) => setFormData({ ...formData, whatsappNumber: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                       placeholder="Contoh: 081234567890"
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
                         Tanggal Ambil *
                       </label>
                       <input
@@ -356,12 +356,12 @@ function OrderContent() {
                         min={minDate}
                         value={formData.pickupDate}
                         onChange={(e) => setFormData({ ...formData, pickupDate: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
                         Jam Ambil *
                       </label>
                       <input
@@ -369,7 +369,7 @@ function OrderContent() {
                         required
                         value={formData.pickupTime}
                         onChange={(e) => setFormData({ ...formData, pickupTime: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                       />
                     </div>
                   </div>
@@ -377,33 +377,33 @@ function OrderContent() {
               </div>
 
               {/* Payment Info */}
-              <div className="border-t pt-6">
-                <h2 className="text-2xl font-display font-bold text-gray-800 mb-4">
+              <div className="border-t pt-4 sm:pt-6">
+                <h2 className="text-xl sm:text-2xl font-display font-bold text-gray-800 mb-3 sm:mb-4">
                   Pembayaran
                 </h2>
                 
                 {paymentAccount ? (
-                  <div className="bg-bakery-cream rounded-lg p-6 mb-4">
-                    <p className="text-sm text-gray-600 mb-3">Transfer ke rekening berikut:</p>
-                    <div className="space-y-2">
-                      <p className="font-bold text-lg">{paymentAccount.bankName}</p>
-                      <p className="font-mono text-2xl text-primary-600">{paymentAccount.accountNumber}</p>
-                      <p className="text-gray-700">a.n. <span className="font-semibold">{paymentAccount.accountName}</span></p>
+                  <div className="bg-bakery-cream rounded-lg p-4 sm:p-6 mb-3 sm:mb-4">
+                    <p className="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3">Transfer ke rekening berikut:</p>
+                    <div className="space-y-1.5 sm:space-y-2">
+                      <p className="font-bold text-base sm:text-lg">{paymentAccount.bankName}</p>
+                      <p className="font-mono text-xl sm:text-2xl text-primary-600 break-all">{paymentAccount.accountNumber}</p>
+                      <p className="text-sm sm:text-base text-gray-700">a.n. <span className="font-semibold">{paymentAccount.accountName}</span></p>
                     </div>
-                    <div className="mt-4 p-3 bg-yellow-100 rounded-lg">
-                      <p className="text-sm text-yellow-800">
+                    <div className="mt-3 sm:mt-4 p-2.5 sm:p-3 bg-yellow-100 rounded-lg">
+                      <p className="text-xs sm:text-sm text-yellow-800">
                         💡 Total yang harus dibayar: <span className="font-bold">Rp {calculateTotal().toLocaleString("id-ID")}</span>
                       </p>
                     </div>
                   </div>
                 ) : (
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4">
-                    <p className="text-red-600">Informasi rekening belum tersedia</p>
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-3 sm:p-4 mb-3 sm:mb-4">
+                    <p className="text-red-600 text-xs sm:text-sm">Informasi rekening belum tersedia</p>
                   </div>
                 )}
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
                     Upload Bukti Pembayaran *
                   </label>
                   <input
@@ -411,14 +411,14 @@ function OrderContent() {
                     accept="image/*"
                     required
                     onChange={handlePaymentProofChange}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500"
                   />
                   {paymentProofPreview && (
-                    <div className="mt-3">
+                    <div className="mt-2 sm:mt-3">
                       <img
                         src={paymentProofPreview}
                         alt="Preview"
-                        className="w-full max-w-md h-48 object-cover rounded-lg"
+                        className="w-full max-w-md h-40 sm:h-48 object-cover rounded-lg"
                       />
                     </div>
                   )}
@@ -429,7 +429,7 @@ function OrderContent() {
               <button
                 type="submit"
                 disabled={isLoading || cart.length === 0 || !paymentAccount}
-                className="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-4 px-6 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl text-lg"
+                className="w-full bg-primary-500 hover:bg-primary-600 active:bg-primary-700 text-white font-bold py-3 sm:py-4 px-4 sm:px-6 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl text-base sm:text-lg"
               >
                 {isLoading ? "Mengirim Pesanan..." : "Kirim Pesanan"}
               </button>

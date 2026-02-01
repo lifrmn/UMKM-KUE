@@ -84,23 +84,23 @@ export default function CakeForm({ cake, onClose }: CakeFormProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-white border-b px-6 py-4 flex justify-between items-center">
-          <h2 className="text-2xl font-display font-bold text-gray-800">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-3 sm:p-4 z-50">
+      <div className="bg-white rounded-lg sm:rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-white border-b px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
+          <h2 className="text-xl sm:text-2xl font-display font-bold text-gray-800">
             {cake ? "Edit Kue" : "Tambah Kue Baru"}
           </h2>
           <button
             onClick={onClose}
-            className="text-gray-500 hover:text-gray-700 text-2xl"
+            className="text-gray-500 hover:text-gray-700 active:text-gray-900 text-2xl sm:text-3xl"
           >
             ×
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-5">
+        <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4 sm:space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
               Nama Kue *
             </label>
             <input
@@ -108,13 +108,13 @@ export default function CakeForm({ cake, onClose }: CakeFormProps) {
               required
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               placeholder="Contoh: Brownies Coklat"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
               Harga (Rp) *
             </label>
             <input
@@ -122,14 +122,14 @@ export default function CakeForm({ cake, onClose }: CakeFormProps) {
               required
               value={formData.price}
               onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               placeholder="Contoh: 50000"
               min="0"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
               Foto Kue {!cake && "*"}
             </label>
             <input
@@ -137,14 +137,14 @@ export default function CakeForm({ cake, onClose }: CakeFormProps) {
               accept="image/*"
               required={!cake}
               onChange={handleImageChange}
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500"
+              className="w-full px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500"
             />
             {imagePreview && (
-              <div className="mt-3">
+              <div className="mt-2 sm:mt-3">
                 <img
                   src={imagePreview}
                   alt="Preview"
-                  className="w-full h-48 object-cover rounded-lg"
+                  className="w-full h-40 sm:h-48 object-cover rounded-lg"
                 />
               </div>
             )}
@@ -156,25 +156,25 @@ export default function CakeForm({ cake, onClose }: CakeFormProps) {
               id="isAvailable"
               checked={formData.isAvailable}
               onChange={(e) => setFormData({ ...formData, isAvailable: e.target.checked })}
-              className="w-5 h-5 text-primary-500 rounded focus:ring-primary-500"
+              className="w-4 h-4 sm:w-5 sm:h-5 text-primary-500 rounded focus:ring-primary-500"
             />
-            <label htmlFor="isAvailable" className="ml-3 text-sm font-medium text-gray-700">
+            <label htmlFor="isAvailable" className="ml-2 sm:ml-3 text-xs sm:text-sm font-medium text-gray-700">
               Kue tersedia / ready
             </label>
           </div>
 
-          <div className="flex gap-3 pt-4">
+          <div className="flex gap-2 sm:gap-3 pt-3 sm:pt-4">
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 transition"
+              className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50 active:bg-gray-100 transition text-sm sm:text-base"
             >
               Batal
             </button>
             <button
               type="submit"
               disabled={isLoading}
-              className="flex-1 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg transition disabled:opacity-50"
+              className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-primary-500 hover:bg-primary-600 active:bg-primary-700 text-white font-semibold rounded-lg transition disabled:opacity-50 text-sm sm:text-base"
             >
               {isLoading ? "Menyimpan..." : "Simpan"}
             </button>
