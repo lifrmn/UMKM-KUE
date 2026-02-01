@@ -67,8 +67,15 @@ function OrderContent() {
       const paymentData = await paymentRes.json();
 
       setCakes(cakesData);
-      setPaymentAccount(paymentData);
+      
+      // Pastikan paymentData adalah objek, bukan array
+      if (paymentData && !paymentData.error) {
+        setPaymentAccount(paymentData);
+      } else {
+        setPaymentAccount(null);
+      }
     } catch (error) {
+      console.error("Error fetching data:", error);
       toast.error("Gagal memuat data");
     }
   };
