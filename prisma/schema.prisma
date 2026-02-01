@@ -1,0 +1,87 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("seller") // seller role
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  cakes           Cake[]
+  paymentAccounts PaymentAccount[]
+}
+
+model Cake {
+  id          String   @id @default(cuid())
+  name        String
+  price       Int
+  imageUrl    String   @db.Text
+  isAvailable Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  orderItems OrderItem[]
+
+  @@index([userId])
+}
+
+model PaymentAccount {
+  id            String   @id @default(cuid())
+  bankName      String
+  accountNumber String
+  accountName   String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Order {
+  id               String   @id @default(cuid())
+  customerName     String
+  whatsappNumber   String
+  pickupDate       DateTime
+  pickupTime       String
+  paymentProofUrl  String   @db.Text
+  status           String   @default("menunggu") // menunggu, diproses, selesai
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  orderItems OrderItem[]
+}
+
+model OrderItem {
+  id       String @id @default(cuid())
+  quantity Int
+
+  orderId String
+  order   Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  cakeId String
+  cake   Cake   @relation(fields: [cakeId], references: [id])
+
+  // Store cake details at time of order (in case cake is deleted later)
+  cakeName  String
+  cakePrice Int
+
+  @@index([orderId])
+  @@index([cakeId])
+}
