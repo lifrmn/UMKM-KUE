@@ -15,9 +15,9 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-bakery-cream via-white to-bakery-peach">
+    <div className="min-h-screen bg-neutral-50">
       <DashboardNav />
-      <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-8">
+      <main className="container mx-auto px-4 py-6">
         {children}
       </main>
     </div>
