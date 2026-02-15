@@ -42,14 +42,20 @@ export default function CakesPage() {
     try {
       const res = await fetch(`/api/cakes/${id}`, {
         method: "DELETE",
+        credentials: "include",
       });
 
-      if (!res.ok) throw new Error("Gagal menghapus");
+      if (!res.ok) {
+        const errorData = await res.json();
+        console.error("Delete error:", errorData);
+        throw new Error(errorData.error || "Gagal menghapus");
+      }
 
       toast.success("Kue berhasil dihapus");
       fetchCakes();
-    } catch (error) {
-      toast.error("Gagal menghapus kue");
+    } catch (error: any) {
+      console.error("Delete cake error:", error);
+      toast.error(error.message || "Gagal menghapus kue");
     }
   };
 

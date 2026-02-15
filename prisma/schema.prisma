@@ -75,8 +75,8 @@ model OrderItem {
   orderId String
   order   Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
 
-  cakeId String
-  cake   Cake   @relation(fields: [cakeId], references: [id])
+  cakeId String?
+  cake   Cake?   @relation(fields: [cakeId], references: [id], onDelete: SetNull)
 
   // Store cake details at time of order (in case cake is deleted later)
   cakeName  String
